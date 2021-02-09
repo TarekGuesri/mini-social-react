@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { ThemeProvider } from '@material-ui/core';
+import theme from './theme';
+
 // Pages
 import Home from 'src/pages/Home';
 import Posts from 'src/pages/Posts';
@@ -14,17 +17,19 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <MainLayout>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/posts" component={Posts} />
-          <Route component={NotFound} />
-        </Switch>
-      </MainLayout>
-      <Footer />
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Navbar />
+        <MainLayout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/posts" component={Posts} />
+            <Route component={NotFound} />
+          </Switch>
+        </MainLayout>
+        <Footer />
+      </Router>
+    </ThemeProvider>
   );
 }
 

@@ -7,7 +7,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     overflow: 'hidden',
     width: '100%',
-    marginTop: '2rem',
+    marginTop: '4rem',
+    minHeight: '50vh',
   },
   wrapper: {
     display: 'flex',
@@ -29,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 const MainLayout = ({ children }) => {
   const classes = useStyles();
-
-  console.log(children);
 
   return (
     <div className={classes.root}>
