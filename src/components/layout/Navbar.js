@@ -30,8 +30,6 @@ export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const preventDefault = (event) => event.preventDefault();
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
