@@ -5,9 +5,6 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  Switch,
-  FormGroup,
-  FormControlLabel,
   MenuItem,
   Menu,
   Button,
@@ -33,10 +30,6 @@ export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -61,11 +54,11 @@ export default function NavBar() {
             color="inherit"
             className={classes.navbarButton + ' ' + classes.active}
           >
-            About
+            Home
           </Button>
 
           <Button color="inherit" className={classes.navbarButton}>
-            Services
+            Posts
           </Button>
 
           <div className={classes.title}></div>

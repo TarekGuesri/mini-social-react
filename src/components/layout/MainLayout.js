@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +35,9 @@ const MainLayout = ({ children }) => {
   return (
     <div className={classes.root}>
       <div className={classes.contentContainer}>
-        <div className={classes.content}>{children}</div>
+        <div className={classes.content}>
+          <Box mx={5}>{children}</Box>
+        </div>
       </div>
     </div>
   );
