@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -24,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavBar() {
+const NavBar = ({ isAuthenticated }) => {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -63,7 +63,7 @@ export default function NavBar() {
 
           <div className={classes.title}></div>
 
-          {auth && (
+          {isAuthenticated ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -93,9 +93,26 @@ export default function NavBar() {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
+          ) : (
+            <>
+              <Link to="/login" className={classes.navbarButton}>
+                <Button color="secondary">Sign in</Button>
+              </Link>
+              |
+              <Link to="/signup" className={classes.navbarButton}>
+                <Button color="secondary">Sign up</Button>
+              </Link>
+            </>
           )}
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps)(NavBar);

@@ -10,6 +10,8 @@ import setAuthToken from 'src/utils/setAuthToken';
 // Pages
 import Home from 'src/pages/Home';
 import Posts from 'src/pages/Posts';
+import Login from 'src/pages/Login';
+import Register from 'src/pages/Register';
 import NotFound from 'src/pages/NotFound';
 
 // Components
@@ -52,6 +54,8 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/posts" component={Posts} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Register} />
               <Route component={NotFound} />
             </Switch>
           </MainLayout>
