@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     width: '100%',
     marginTop: '4rem',
-    minHeight: '50vh',
+    minHeight: '60vh',
   },
   wrapper: {
     display: 'flex',

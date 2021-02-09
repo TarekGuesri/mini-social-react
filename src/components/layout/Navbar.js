@@ -9,7 +9,7 @@ import {
   Menu,
   Button,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,8 @@ export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const preventDefault = (event) => event.preventDefault();
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,24 +44,24 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Button
-            color="inherit"
-            className={classes.navbarButton + ' ' + classes.active}
-          >
-            <Typography variant="h4" style={{ marginRight: '2rem' }}>
-              M-Social
-            </Typography>
-          </Button>
-          <Button
-            color="inherit"
-            className={classes.navbarButton + ' ' + classes.active}
-          >
-            Home
-          </Button>
+          <Link to="/" className={classes.navbarButton}>
+            <Button
+              color="secondary"
+              className={classes.navbarButton + ' ' + classes.active}
+            >
+              <Typography variant="h4" style={{ marginRight: '2rem' }}>
+                M-Social
+              </Typography>
+            </Button>
+          </Link>
 
-          <Button color="inherit" className={classes.navbarButton}>
-            Posts
-          </Button>
+          <Link to="/" className={classes.navbarButton}>
+            <Button color="secondary">Home</Button>
+          </Link>
+
+          <Link to="/posts" className={classes.navbarButton}>
+            <Button color="secondary">Posts</Button>
+          </Link>
 
           <div className={classes.title}></div>
 
