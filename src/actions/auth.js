@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  RESET_LOGIN_ERROR,
 } from './types';
 
 // Load User
@@ -29,6 +30,7 @@ export const loadUser = () => async (dispatch) => {
 
 // Login User
 export const login = (username, password) => async (dispatch) => {
+  dispatch({ type: RESET_LOGIN_ERROR });
   const body = { username, password };
 
   try {

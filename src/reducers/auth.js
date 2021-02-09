@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 /* eslint-disable space-before-function-paren */
 import {
   USER_LOADED,
@@ -5,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  RESET_LOGIN_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -37,6 +39,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loginErrorMessage: payload.msg,
+      };
+    case RESET_LOGIN_ERROR:
+      return {
+        ...state,
+        loginErrorMessage: '',
       };
     case AUTH_ERROR:
     case LOGOUT:
