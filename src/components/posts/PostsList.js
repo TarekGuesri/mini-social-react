@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
+
+import Spinner from 'src/components/Layout/Spinner';
+import { getPosts } from 'src/actions/posts';
 
 import PostItem from './PostItem';
 const posts = [
@@ -10,16 +15,41 @@ const posts = [
   { id: 3, title: 'Post 2', content: 'Goodbye World' },
 ];
 
-const PostsList = () => {
+const PostsList = ({ posts, loading, getPostsAction }) => {
+  useEffect(() => {
+    getPostsAction();
+    // eslint-disable-next-line
+  }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div style={{ maxWidth: '1000px' }}>
       <Grid justify="center" container>
-        {posts.map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))}
+        {posts.length < 1 ? (
+          <Typography> There are no posts yet </Typography>
+        ) : (
+          posts.map((post) => <PostItem key={post.id} post={post} />)
+        )}
       </Grid>
     </div>
   );
 };
 
-export default PostsList;
+const constDispatchToProps = (dispatch) => ({
+  getPostsAction: bindActionCreators(getPosts, dispatch),
+});
+
+const mapStateToProps = (state) => ({
+  posts: state.posts.posts,
+  loading: state.posts.loading,
+});
+
+const PostsListConnected = connect(
+  mapStateToProps,
+  constDispatchToProps
+)(PostsList);
+
+export default PostsListConnected;

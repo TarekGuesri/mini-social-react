@@ -2,11 +2,13 @@ import React from 'react';
 
 import { Typography } from '@material-ui/core';
 
-import PostsList from 'src/components/posts/PostsList';
+import PostAdd from 'src/components/Posts/PostAdd';
+import PostsList from 'src/components/Posts/PostsList';
 
 const Posts = () => {
   return (
     <div align="center">
+      <PostAdd />
       <Typography variant="h4" component="h4" gutterBottom>
         Posts:
       </Typography>

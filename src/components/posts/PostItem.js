@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard() {
+export default function PostItem({ post: { title, content, imgUrl } }) {
   const classes = useStyles();
 
   return (
@@ -29,16 +29,18 @@ export default function ImgMediaCard() {
             component="img"
             alt="Contemplative Reptile"
             height="140"
-            image="https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg"
+            image={
+              imgUrl ||
+              'https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg'
+            }
             title="Contemplative Reptile"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {content}
             </Typography>
           </CardContent>
         </CardActionArea>
