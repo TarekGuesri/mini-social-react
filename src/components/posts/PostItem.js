@@ -1,4 +1,5 @@
 import React from 'react';
+import TextTruncate from 'react-text-truncate';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -40,7 +41,12 @@ export default function PostItem({ post: { title, content, imgUrl } }) {
               {title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {content}
+              <TextTruncate
+                line={3}
+                element="span"
+                truncateText="…"
+                text={content}
+              />
             </Typography>
           </CardContent>
         </CardActionArea>
