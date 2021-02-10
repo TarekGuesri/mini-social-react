@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import TextTruncate from 'react-text-truncate';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PostItem({ post: { title, content, imgUrl } }) {
+export default function PostItem({ post: { id, title, content, imgUrl } }) {
   const classes = useStyles();
 
   return (
@@ -51,9 +52,11 @@ export default function PostItem({ post: { title, content, imgUrl } }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Read More...
-          </Button>
+          <Link to={`/post/${id}`}>
+            <Button size="small" color="primary">
+              Read More...
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </Grid>
