@@ -51,6 +51,7 @@ const Post = ({ match, post, loading, getPostAction }) => {
 
   useEffect(() => {
     getPostAction(match.params.id);
+    // eslint-disable-next-line
   }, []);
 
   const handleExpandClick = () => {
@@ -65,16 +66,18 @@ const Post = ({ match, post, loading, getPostAction }) => {
     return <NotFoundMessage />;
   }
 
+  const { title, content, createdAt, imgUrl } = post;
+
   return (
     <div align="center">
       <Card className={classes.root}>
         <PostHeader
           classes={classes}
-          title={'Test'}
-          date={'September 14, 2017'}
-          // imgUrl={}
+          title={title}
+          date={createdAt}
+          imgUrl={imgUrl}
         />
-        <PostContent content={'Test'} />
+        <PostContent content={content} />
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
