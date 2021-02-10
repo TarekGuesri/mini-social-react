@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+
 import clsx from 'clsx';
 import {
   Card,
@@ -12,7 +13,9 @@ import {
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import PostHeader from 'src/components/Post/PostHeader';
+import PostContent from 'src/components/Post/PostContent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,25 +40,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function Post({ match }) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  console.log(match);
+
   return (
     <div align="center">
       <Card className={classes.root}>
-        <PostHeader classes={classes} />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
-          </Typography>
-        </CardContent>
+        <PostHeader
+          classes={classes}
+          title={'Test'}
+          date={'September 14, 2017'}
+          // imgUrl={}
+        />
+        <PostContent content={'Test'} />
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
