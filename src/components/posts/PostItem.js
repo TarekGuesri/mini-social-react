@@ -1,64 +1,106 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import TextTruncate from 'react-text-truncate';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import {
   Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
+  CardHeader,
   CardMedia,
-  Button,
+  CardContent,
+  CardActions,
+  Avatar,
+  IconButton,
   Typography,
-  Grid,
+  Button,
 } from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-    margin: '1.1rem',
+import { v4 as uuidv4 } from 'uuid';
+
+const useStyles = makeStyles((theme) => ({
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
   },
-});
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+}));
 
-export default function PostItem({ post: { id, title, content, imgUrl } }) {
+export default function RecipeReviewCard() {
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
-    <Grid md={3} className={classes.root}>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            height="140"
-            image={
-              imgUrl ||
-              'https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg'
-            }
-            title="Contemplative Reptile"
-          />
-          <CardContent style={{ height: '98px', width: '218px' }}>
-            <Typography gutterBottom variant="h5" component="h2">
-              {title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <TextTruncate
-                line={3}
-                element="span"
-                truncateText="…"
-                text={content}
-              />
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Link to={`/post/${id}`}>
+    <div style={{ padding: '0 0 16px 16px' }}>
+      <Card className={classes.root}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              J
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="Shrimp and Chorizo Paella"
+          subheader="September 14, 2016"
+        />
+        <CardMedia
+          className={classes.media}
+          image={`https://source.unsplash.com/collection/${Math.floor(
+            Math.random() * 10 + 1
+          )}`}
+          title="Paella dish"
+        />
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            This impressive paella is a perfect party dish and a fun meal to
+            cook together with your guests. Add 1 cup of frozen peas along with
+            the mussels, if you like.
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <Link
+            to={`/post`}
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
             <Button size="small" color="primary">
-              Read More...
+              Read More
             </Button>
           </Link>
         </CardActions>
       </Card>
-    </Grid>
+    </div>
   );
 }

@@ -26,15 +26,17 @@ const PostsList = ({ posts, loading, getPostsAction }) => {
   }
 
   return (
-    <div style={{ maxWidth: '1000px' }}>
-      <Grid justify="center" container>
-        {posts.length < 1 ? (
-          <Typography> There are no posts yet </Typography>
-        ) : (
-          posts.map((post) => <PostItem key={post.id} post={post} />)
-        )}
-      </Grid>
-    </div>
+    <Grid container spacing={2}>
+      {posts.length < 1 ? (
+        <Typography> There are no posts yet </Typography>
+      ) : (
+        posts.map((post) => (
+          <Grid md={6}>
+            <PostItem key={post.id} post={post} />{' '}
+          </Grid>
+        ))
+      )}
+    </Grid>
   );
 };
 

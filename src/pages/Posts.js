@@ -1,18 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Typography } from '@material-ui/core';
+import { Grid, Button, Container } from '@material-ui/core';
 
 import PostAdd from 'src/components/Posts/PostAdd';
 import PostsList from 'src/components/Posts/PostsList';
+import Sidebar from 'src/components/Posts/Sidebar';
 
 const Posts = ({ isAuthenticated }) => {
   return (
     <div align="center">
       {isAuthenticated && <PostAdd />}
-      <Typography variant="h4" component="h4" gutterBottom>
-        Posts:
-      </Typography>
-      <PostsList></PostsList>
+      <Container maxWidth="md">
+        <Grid justify="center" container>
+          <Grid
+            md={8}
+            style={{
+              marginRight: '20px',
+            }}
+          >
+            <PostsList />
+          </Grid>
+          <Grid md={3}>
+            <Sidebar></Sidebar>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 };
