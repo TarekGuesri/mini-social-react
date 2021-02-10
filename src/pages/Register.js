@@ -14,7 +14,7 @@ import {
 import AsyncButton from 'src/components/Buttons/AsyncButton';
 import Alert from 'src/components/Messages/Alert';
 
-import { register } from 'src/actions/auth';
+import { register, setRegisterErrorMessage } from 'src/actions/auth';
 
 const useStyles = makeStyles((theme) => ({
   formInput: {
@@ -30,6 +30,7 @@ const Register = ({
   isAuthenticated,
   registerErrorMessage,
   registerAction,
+  setRegisterErrorMessageAction,
 }) => {
   const [state, setState] = useState({
     username: '',
@@ -51,9 +52,20 @@ const Register = ({
 
     const { username, password, passwordConfirm } = state;
 
+    if (password !== passwordConfirm) {
+      await setRegisterErrorMessageAction('Passwords do not match');
+
+      setState({
+        ...state,
+        submitLoading: false,
+      });
+
+      return false;
+    }
+
     await registerAction(username, password);
 
-    await setState({
+    setState({
       ...state,
       submitLoading: false,
     });
@@ -138,6 +150,10 @@ const Register = ({
 
 const constDispatchToProps = (dispatch) => ({
   registerAction: bindActionCreators(register, dispatch),
+  setRegisterErrorMessageAction: bindActionCreators(
+    setRegisterErrorMessage,
+    dispatch
+  ),
 });
 
 const mapStateToProps = (state) => ({

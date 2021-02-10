@@ -58,7 +58,7 @@ export const login = (username, password) => async (dispatch) => {
 
 // Login User
 export const register = (username, password) => async (dispatch) => {
-  dispatch({ type: RESET_LOGIN_ERROR });
+  dispatch({ type: RESET_REGISTER_ERROR });
   const body = { username, password };
 
   try {

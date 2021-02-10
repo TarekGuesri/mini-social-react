@@ -78,7 +78,7 @@ export default function (state = initialState, action) {
     case SET_REGISTER_ERROR:
       return {
         ...state,
-        registerErrorMessage: payload,
+        registerErrorMessage: payload.msg,
       };
     case RESET_REGISTER_ERROR:
       return {
