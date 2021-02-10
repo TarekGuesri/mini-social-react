@@ -7,7 +7,7 @@ import { Card, CardContent, TextField, makeStyles } from '@material-ui/core';
 import AsyncButton from 'src/components/Buttons/AsyncButton';
 import Alert from 'src/components/Messages/Alert';
 
-import { login } from 'src/actions/auth';
+import { createPost } from 'src/actions/posts';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostForm = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
+const PostForm = ({ isAuthenticated, postsErrorMessage, createPostAction }) => {
   const [state, setState] = useState({
     title: '',
     imgUrl: '',
@@ -36,16 +36,22 @@ const PostForm = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
   };
 
   const handleSubmit = async () => {
-    await setState({
+    setState({
       ...state,
       submitLoading: true,
     });
 
-    // await loginAction(title, imgUrl);
+    const { title, imgUrl, content } = state;
+    const formData = { title, imgUrl, content };
 
-    await setState({
+    await createPostAction(formData);
+
+    setState({
       ...state,
       submitLoading: false,
+      title: '',
+      imgUrl: '',
+      content: '',
     });
   };
 
@@ -90,9 +96,9 @@ const PostForm = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
             helperText="Content must be at least 10 letters"
           />
 
-          {loginErrorMessage && (
+          {postsErrorMessage && (
             <Alert severity="error" className={classes.formInput}>
-              {loginErrorMessage}
+              {postsErrorMessage}
             </Alert>
           )}
 
@@ -113,12 +119,12 @@ const PostForm = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
 };
 
 const constDispatchToProps = (dispatch) => ({
-  loginAction: bindActionCreators(login, dispatch),
+  createPostAction: bindActionCreators(createPost, dispatch),
 });
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  loginErrorMessage: state.auth.loginErrorMessage,
+  postsErrorMessage: state.posts.postsErrorMessage,
 });
 
 const PostFormConnected = connect(

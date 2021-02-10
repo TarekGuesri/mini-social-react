@@ -36,7 +36,7 @@ export default function PostItem({ post: { title, content, imgUrl } }) {
             }
             title="Contemplative Reptile"
           />
-          <CardContent style={{ height: '98px' }}>
+          <CardContent style={{ height: '98px', width: '218px' }}>
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
