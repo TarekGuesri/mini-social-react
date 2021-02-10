@@ -8,7 +8,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   RESET_LOGIN_ERROR,
+  SET_REGISTER_ERROR,
+  RESET_REGISTER_ERROR,
 } from './types';
 
 // Load User
@@ -52,6 +56,30 @@ export const login = (username, password) => async (dispatch) => {
   }
 };
 
+// Login User
+export const register = (username, password) => async (dispatch) => {
+  dispatch({ type: RESET_LOGIN_ERROR });
+  const body = { username, password };
+
+  try {
+    const res = await axios.post('/users', body);
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadUser());
+  } catch (error) {
+    const { response } = error;
+
+    dispatch({
+      type: REGISTER_FAIL,
+      payload: response.data,
+    });
+  }
+};
+
 // Logout User
 export const logout = () => async (dispatch) => {
   dispatch({ type: LOGOUT });
@@ -64,5 +92,22 @@ export const setLoginErrorMessage = (msg) => async (dispatch) => {
     payload: {
       msg,
     },
+  });
+};
+
+// Logout User
+export const setRegisterErrorMessage = (msg) => async (dispatch) => {
+  dispatch({
+    type: SET_REGISTER_ERROR,
+    payload: {
+      msg,
+    },
+  });
+};
+
+// Logout User
+export const resetRegisterErrorMessage = (msg) => async (dispatch) => {
+  dispatch({
+    type: RESET_REGISTER_ERROR,
   });
 };

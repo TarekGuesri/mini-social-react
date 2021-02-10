@@ -6,7 +6,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   RESET_LOGIN_ERROR,
+  SET_REGISTER_ERROR,
+  RESET_REGISTER_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -15,6 +19,7 @@ const initialState = {
   loading: true,
   user: null,
   loginErrorMessage: '',
+  registerErrorMessage: '',
 };
 
 export default function (state = initialState, action) {
@@ -35,10 +40,24 @@ export default function (state = initialState, action) {
         ...payload,
         loginErrorMessage: '',
       };
+
+    case REGISTER_SUCCESS:
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false,
+      };
     case LOGIN_FAIL:
       return {
         ...state,
         loginErrorMessage: payload.msg,
+      };
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        registerErrorMessage: payload.msg,
       };
     case RESET_LOGIN_ERROR:
       return {
@@ -54,6 +73,17 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         loading: false,
         user: null,
+      };
+
+    case SET_REGISTER_ERROR:
+      return {
+        ...state,
+        registerErrorMessage: payload,
+      };
+    case RESET_REGISTER_ERROR:
+      return {
+        ...state,
+        registerErrorMessage: '',
       };
     default:
       return state;

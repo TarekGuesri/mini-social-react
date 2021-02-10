@@ -44,6 +44,8 @@ const Login = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
       submitLoading: true,
     });
 
+    const { username, password } = state;
+
     await loginAction(username, password);
 
     await setState({
@@ -86,6 +88,7 @@ const Login = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
             required
             value={password}
             variant="outlined"
+            type="password"
           />
 
           {loginErrorMessage && (
