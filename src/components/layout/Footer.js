@@ -11,7 +11,7 @@ export default function SimpleBottomNavigation() {
         justifyContent="center"
         m={1}
         p={1}
-        bgcolor="background.paper"
+        // bgcolor="background.paper"
       >
         <Box justifyContent="center">
           <Typography variant="h6">Developed by Tariq L. Guesri</Typography>

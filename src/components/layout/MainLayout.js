@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Box, makeStyles } from '@material-ui/core';
+import Spinner from 'src/components/layout/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,18 +30,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ loading, children }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div className={classes.contentContainer}>
         <div className={classes.content}>
-          <Box mx={5}>{children}</Box>
+          <Box mx={5}> {loading ? <Spinner /> : children}</Box>
         </div>
       </div>
     </div>
   );
 };
 
-export default MainLayout;
+const mapStateToProps = (state) => ({
+  loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps)(MainLayout);

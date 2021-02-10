@@ -1,46 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Button,
+  Typography,
+  Grid,
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 300,
-  },
-  pos: {
-    marginBottom: 12,
+    maxWidth: 345,
+    margin: '1.1rem',
   },
 });
 
-export default function PostItem({ post }) {
+export default function ImgMediaCard() {
   const classes = useStyles();
-  const { title, content } = post;
 
   return (
-    <Card className={classes.root} style={{ marginBottom: '10px' }}>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          {title}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          User
-        </Typography>
-        <Typography variant="body2" component="p">
-          {content}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Read More</Button>
-      </CardActions>
-    </Card>
+    <Grid md={3} className={classes.root}>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            image="https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg"
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Lizard
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Read More...
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 }
-
-PostItem.propTypes = {
-  post: PropTypes.object.isRequired,
-};

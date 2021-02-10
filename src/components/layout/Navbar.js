@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -13,6 +14,8 @@ import {
 import { Link } from 'react-router-dom';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+import { logout } from 'src/actions/auth';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavBar = ({ isAuthenticated }) => {
+const NavBar = ({ isAuthenticated, loading, logoutAction }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -37,6 +40,14 @@ const NavBar = ({ isAuthenticated }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogOut = () => {
+    logoutAction();
+  };
+
+  if (loading) {
+    return <></>;
+  }
 
   return (
     <div className={classes.root}>
@@ -91,6 +102,7 @@ const NavBar = ({ isAuthenticated }) => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
               </Menu>
             </div>
           ) : (
@@ -110,9 +122,13 @@ const NavBar = ({ isAuthenticated }) => {
   );
 };
 
+const constDispatchToProps = (dispatch) => ({
+  logoutAction: bindActionCreators(logout, dispatch),
+});
+
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   loading: state.auth.loading,
 });
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, constDispatchToProps)(NavBar);
