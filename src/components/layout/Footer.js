@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 
 import Box from '@material-ui/core/Box';
 
-export default function SimpleBottomNavigation() {
+export default function Footer() {
   return (
     <div style={{ width: '100%' }}>
       <Box

@@ -10,14 +10,15 @@ import setAuthToken from 'src/utils/setAuthToken';
 // Pages
 import Home from 'src/pages/Home';
 import Posts from 'src/pages/Posts';
+import Post from 'src/pages/Post';
 import Login from 'src/pages/Login';
 import Register from 'src/pages/Register';
 import NotFound from 'src/pages/NotFound';
 
 // Components
-import Navbar from 'src/components/layout/Navbar';
-import MainLayout from 'src/components/layout/MainLayout';
-import Footer from 'src/components/layout/Footer';
+import Navbar from 'src/components/Layout/Navbar';
+import MainLayout from 'src/components/Layout/MainLayout';
+import Footer from 'src/components/Layout/Footer';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -54,6 +55,7 @@ const App = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/posts" component={Posts} />
+              <Route path="/post/:id" component={Post} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Register} />
               <Route component={NotFound} />

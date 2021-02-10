@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Box, makeStyles } from '@material-ui/core';
-import Spinner from 'src/components/layout/Spinner';
+import Spinner from 'src/components/Layout/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
