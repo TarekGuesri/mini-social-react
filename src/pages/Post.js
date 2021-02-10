@@ -1,5 +1,6 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import clsx from 'clsx';
 import {
   Card,
@@ -14,8 +15,12 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import Spinner from 'src/components/Layout/Spinner';
+import NotFoundMessage from 'src/components/NotFound/NotFoundMessage';
 import PostHeader from 'src/components/Post/PostHeader';
 import PostContent from 'src/components/Post/PostContent';
+
+import { getPost } from 'src/actions/posts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,15 +45,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Post({ match }) {
+const Post = ({ match, post, loading, getPostAction }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    getPostAction(match.params.id);
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  console.log(match);
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (!post) {
+    return <NotFoundMessage />;
+  }
 
   return (
     <div align="center">
@@ -83,4 +98,15 @@ export default function Post({ match }) {
       </Card>
     </div>
   );
-}
+};
+
+const constDispatchToProps = (dispatch) => ({
+  getPostAction: bindActionCreators(getPost, dispatch),
+});
+
+const mapStateToProps = (state) => ({
+  post: state.posts.post,
+  loading: state.posts.loading,
+});
+
+export default connect(mapStateToProps, constDispatchToProps)(Post);

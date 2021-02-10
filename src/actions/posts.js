@@ -46,3 +46,24 @@ export const createPost = (formData) => async (dispatch) => {
     });
   }
 };
+
+// Get posts
+export const getPost = (id) => async (dispatch) => {
+  dispatch({
+    type: SET_POSTS_LOADING,
+  });
+
+  try {
+    const res = await axios.get(`posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.data.msg },
+    });
+  }
+};

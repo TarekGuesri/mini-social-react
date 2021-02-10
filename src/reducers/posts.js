@@ -11,7 +11,7 @@ const initialState = {
   posts: [],
   post: null,
   loading: true,
-  postsErrorMessage: '',
+  errorMessage: '',
 };
 
 export default function (state = initialState, action) {
@@ -22,6 +22,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         posts: payload,
+        loading: false,
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
+        loading: false,
+      };
+    case POST_ERROR:
+      return {
+        ...state,
+        errorMessage: payload,
+        post: null,
         loading: false,
       };
     case SET_POSTS_LOADING:
