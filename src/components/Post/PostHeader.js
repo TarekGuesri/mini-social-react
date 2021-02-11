@@ -1,6 +1,7 @@
 import moment from 'moment';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
+
 // import Avatar from '@material-ui/core/Avatar';
 
 const PostHeader = ({ classes, title, date, imgUrl }) => {
@@ -13,7 +14,7 @@ const PostHeader = ({ classes, title, date, imgUrl }) => {
           </Avatar>
         } */
         title={title}
-        subheader={moment(date).format('MM/DD/YYYY')}
+        subheader={moment(date).format('MMM DD, YYYY')}
       />
       <CardMedia
         className={classes.media}
@@ -21,7 +22,7 @@ const PostHeader = ({ classes, title, date, imgUrl }) => {
           imgUrl ||
           'https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg'
         }
-        title="Paella dish"
+        title={title}
       />
     </>
   );

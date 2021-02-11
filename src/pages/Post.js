@@ -4,23 +4,48 @@ import { bindActionCreators } from 'redux';
 import clsx from 'clsx';
 import {
   Card,
-  CardContent,
   CardActions,
   Collapse,
   IconButton,
-  Typography,
   makeStyles,
 } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Spinner from 'src/components/Layout/Spinner';
 import NotFoundMessage from 'src/components/NotFound/NotFoundMessage';
 import PostHeader from 'src/components/Post/PostHeader';
 import PostContent from 'src/components/Post/PostContent';
+import PostComments from 'src/components/Post/PostComments';
 
 import { getPost } from 'src/actions/posts';
+
+const comments = [
+  {
+    postId: 1,
+    id: 1,
+    name: 'id labore ex et quam laborum',
+    email: 'Eliseo@gardner.biz',
+    body:
+      'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium',
+  },
+  {
+    postId: 1,
+    id: 2,
+    name: 'quo vero reiciendis velit similique earum',
+    email: 'Jayne_Kuhic@sydney.com',
+    body:
+      'est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et',
+  },
+  {
+    postId: 1,
+    id: 3,
+    name: 'odio adipisci rerum aut animi',
+    email: 'Nikita@garfield.biz',
+    body:
+      'quia molestiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione',
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,16 +72,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Post = ({ match, post, loading, getPostAction }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   useEffect(() => {
     getPostAction(match.params.id);
     // eslint-disable-next-line
   }, []);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   if (loading) {
     return <Spinner />;
@@ -82,21 +103,9 @@ const Post = ({ match, post, loading, getPostAction }) => {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Comments:</Typography>
-          </CardContent>
+          <PostComments comments={comments} />
         </Collapse>
       </Card>
     </div>
