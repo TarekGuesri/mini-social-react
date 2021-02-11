@@ -20,6 +20,7 @@ import NotFound from 'src/pages/NotFound';
 import Navbar from 'src/components/Layout/Navbar';
 import MainLayout from 'src/components/Layout/MainLayout';
 import Footer from 'src/components/Layout/Footer';
+import PrivateRoute from 'src/components/routing/PrivateRoute';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -55,7 +56,8 @@ const App = () => {
           <MainLayout>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/posts/create" component={PostCreate} />
+              {/* <Route path="/posts/create" component={PostCreate} /> */}
+              <PrivateRoute exact path="/posts/create" component={PostCreate} />
               <Route path="/posts" component={Posts} />
               <Route path="/post/:id" component={Post} />
               <Route path="/login" component={Login} />

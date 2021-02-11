@@ -213,18 +213,17 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
             />
           </div> */}
           <div className={classes.grow} />
-          {isAuthenticated && (
-            <Tooltip title="Create a post">
-              <IconButton
-                component={Link}
-                to="/posts/create"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <AddCircleIcon />
-              </IconButton>
-            </Tooltip>
-          )}
+
+          <Tooltip title="Create a post">
+            <IconButton
+              component={Link}
+              to="/posts/create"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <AddCircleIcon />
+            </IconButton>
+          </Tooltip>
 
           <Tooltip title="Posts">
             <IconButton
