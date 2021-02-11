@@ -11,7 +11,7 @@ const Posts = ({ isAuthenticated }) => {
     <div align="center">
       {/* {isAuthenticated  && <PostAdd />} */}
       {false && <PostAdd />}
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Grid justify="center" container>
           <Grid
             md={8}

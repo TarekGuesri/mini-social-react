@@ -8,7 +8,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   typography: {
-    fontFamily: 'Caveat, cursive',
+    fontFamily: 'Yeseva One, cursive',
   },
 });
 
@@ -16,7 +16,7 @@ export default function Types() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="sm">
       <div className={classes.root} style={{ textAlign: 'center' }}>
         <Typography className={classes.typography} variant="h1" component="h2">
           We
@@ -27,15 +27,13 @@ export default function Types() {
           component="h2"
           style={{ fontWeight: '500' }}
         >
-          Share
+          Travel
         </Typography>
-        <Typography className={classes.typography} variant="h2">
-          A smile{' '}
-        </Typography>
-        <Typography className={classes.typography} variant="h3">
+        <Typography className={classes.typography} variant="h4" gutterBottom>
           around
         </Typography>
-        <Typography className={classes.typography} variant="h5" gutterBottom>
+
+        <Typography className={classes.typography} variant="h3">
           the world
         </Typography>
 
@@ -43,17 +41,29 @@ export default function Types() {
           variant="body1"
           gutterBottom
           style={{
-            margin: '3rem 0',
-            lineHeight: '170%',
+            marginTop: '3rem',
+            lineHeight: '200%',
             letterSpacing: '0.2px',
           }}
         >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum, magni
-          incidunt? Ab asperiores obcaecati velit aliquid, corporis perferendis
-          et voluptas fuga qui quibusdam molestias reiciendis perspiciatis quo
-          delectus pariatur doloribus quia laboriosam totam corrupti blanditiis
-          similique sint? Saepe consectetur blanditiis labore iure facilis
-          minima enim ad. Odit possimus unde id.
+          Being an outdoor junkie is incredibly common having nature hacks up
+          your sleeve in the event of an emergency or random badassery is
+          another knowing which spiders don’t bite so you can pick them up.
+        </Typography>
+
+        <Typography
+          variant="caption"
+          display="block"
+          style={{
+            marginTop: '1rem',
+            marginBottom: '3rem',
+            lineHeight: '230%',
+            letterSpacing: '0.4px',
+            color: '#555',
+          }}
+        >
+          And hand over to your friends a party trick is just the beginning
+          below are ten hardcore nature hacks starting with good ol’ fire.
         </Typography>
 
         <Button

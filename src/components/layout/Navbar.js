@@ -184,17 +184,13 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar
-        position="static"
-        color="primary"
-        style={{ backgroundColor: '#f44336', boxShadow: 'none' }}
-      >
+      <AppBar position="static" color="primary" style={{ boxShadow: 'none' }}>
         <Toolbar>
           <IconButton aria-label="show 17 new notifications" color="inherit">
             <AllInclusiveIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            social
+            socialize
           </Typography>
           {/*       <div className={classes.search}>
             <div className={classes.searchIcon}>

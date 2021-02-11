@@ -17,6 +17,7 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CommentIcon from '@material-ui/icons/Comment';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: '#37a000',
   },
 }));
 
@@ -44,16 +45,16 @@ export default function RecipeReviewCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <div style={{ padding: '0 0 16px 16px' }}>
       <Card className={classes.root} variant="elevation">
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
+            <Avatar
+              aria-label="recipe"
+              color="primary"
+              className={classes.avatar}
+            >
               J
             </Avatar>
           }
@@ -62,8 +63,11 @@ export default function RecipeReviewCard() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title="Shrimp and Chorizo"
+          subheader="Sep 14, 2016"
+          style={{
+            textAlign: 'left',
+          }}
         />
         <CardMedia
           className={classes.media}
@@ -86,19 +90,18 @@ export default function RecipeReviewCard() {
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
-          <Link
-            to={`/post`}
+
+          <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
-            onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
+            component={Link}
+            to="/post/1"
           >
-            <Button size="small" color="primary">
-              Read More
-            </Button>
-          </Link>
+            <CommentIcon />
+          </IconButton>
         </CardActions>
       </Card>
     </div>

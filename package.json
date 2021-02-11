@@ -1,5 +1,6 @@
 {
   "name": "mini-social-react",
+  "author": "Tariq L. Guesri & Mohammed Fellak",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
