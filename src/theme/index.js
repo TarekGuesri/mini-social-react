@@ -5,7 +5,7 @@ export default createMuiTheme({
   spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
   palette: {
     primary: {
-      main: grey[800],
+      main: grey[900],
     },
     secondary: {
       main: grey[200],
