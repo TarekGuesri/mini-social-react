@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Card, CardContent, TextField, makeStyles } from '@material-ui/core';
+import {
+  Typography,
+  Card,
+  CardContent,
+  TextField,
+  makeStyles,
+} from '@material-ui/core';
 
 import AsyncButton from 'src/components/Buttons/AsyncButton';
 import Alert from 'src/components/Messages/Alert';
@@ -59,8 +65,12 @@ const PostForm = ({ isAuthenticated, postsErrorMessage, createPostAction }) => {
 
   return (
     <div align="center" className={classes.container}>
-      <Card style={{ maxWidth: '500px' }}>
+      <Card style={{ maxWidth: '500px', padding: '1rem' }}>
         <CardContent>
+          <Typography variant="h5" style={{ marginBottom: '24px' }}>
+            Share your story
+          </Typography>
+
           <TextField
             className={classes.formInput}
             fullWidth

@@ -27,21 +27,7 @@ export default function SimpleAccordion() {
 
   return (
     <div className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          classes={{
-            content: classes.accordionCenter,
-          }}
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Create a post...</Typography>
-        </AccordionSummary>
-        <AccordionDetails className={classes.accordionCenter}>
-          <PostForm />
-        </AccordionDetails>
-      </Accordion>
+      <PostForm />
     </div>
   );
 }

@@ -11,6 +11,7 @@ import setAuthToken from 'src/utils/setAuthToken';
 import Home from 'src/pages/Home';
 import Posts from 'src/pages/Posts';
 import Post from 'src/pages/Post';
+import PostCreate from 'src/pages/PostCreate';
 import Login from 'src/pages/Login';
 import Register from 'src/pages/Register';
 import NotFound from 'src/pages/NotFound';
@@ -54,6 +55,7 @@ const App = () => {
           <MainLayout>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route path="/posts/create" component={PostCreate} />
               <Route path="/posts" component={Posts} />
               <Route path="/post/:id" component={Post} />
               <Route path="/login" component={Login} />

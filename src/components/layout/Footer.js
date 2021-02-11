@@ -14,7 +14,9 @@ export default function Footer() {
         // bgcolor="background.paper"
       >
         <Box justifyContent="center">
-          <Typography variant="h6">Developed by Tariq L. Guesri</Typography>
+          <Typography variant="body2" style={{ color: 'grey' }}>
+            Developed by Tariq L. Guesri
+          </Typography>
         </Box>
       </Box>
     </div>

@@ -20,7 +20,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CommentIcon from '@material-ui/icons/Comment';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 import { logout } from 'src/actions/auth';
 
@@ -191,7 +191,7 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
       >
         <Toolbar>
           <IconButton aria-label="show 17 new notifications" color="inherit">
-            <ClearAllIcon />
+            <AllInclusiveIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             social
@@ -211,12 +211,25 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
           </div> */}
           <div className={classes.grow} />
           {/* {isAuthenticated ? ( */}
-          <IconButton aria-label="show 17 new notifications" color="inherit">
+
+          <IconButton
+            component={Link}
+            to="/posts/create"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
             <AddCircleIcon />
           </IconButton>
-          <IconButton aria-label="show 17 new notifications" color="inherit">
+
+          <IconButton
+            component={Link}
+            to="/posts"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
             <CommentIcon />
           </IconButton>
+
           {isAuthenticated ? (
             <div>
               <IconButton

@@ -50,7 +50,7 @@ export default function RecipeReviewCard() {
 
   return (
     <div style={{ padding: '0 0 16px 16px' }}>
-      <Card className={classes.root}>
+      <Card className={classes.root} variant="elevation">
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>

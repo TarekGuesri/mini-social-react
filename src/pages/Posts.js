@@ -9,7 +9,8 @@ import Sidebar from 'src/components/Posts/LatestPosts';
 const Posts = ({ isAuthenticated }) => {
   return (
     <div align="center">
-      {isAuthenticated && <PostAdd />}
+      {/* {isAuthenticated  && <PostAdd />} */}
+      {false && <PostAdd />}
       <Container maxWidth="md">
         <Grid justify="center" container>
           <Grid
