@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,6 +22,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CommentIcon from '@material-ui/icons/Comment';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
 import { logout } from 'src/actions/auth';
 
@@ -86,10 +89,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  navbarButtonText: {
+    fontSize: '19px',
+  },
 }));
 
 const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
   const classes = useStyles();
+  console.log(classes.navbarButtonText);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -206,72 +213,97 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
             />
           </div> */}
           <div className={classes.grow} />
-          {/* {isAuthenticated ? ( */}
-
-          <IconButton
-            component={Link}
-            to="/posts/create"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <AddCircleIcon />
-          </IconButton>
-
-          <IconButton
-            component={Link}
-            to="/posts"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <CommentIcon />
-          </IconButton>
-
-          {isAuthenticated ? (
-            <div>
+          {isAuthenticated && (
+            <Tooltip title="Create a post">
               <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
+                component={Link}
+                to="/posts/create"
+                aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <AccountCircle />
+                <AddCircleIcon />
               </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                // open={open}
-                open={false}
-                onClose={handleClose}
-              >
-                {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem> */}
-                <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
-              </Menu>
+            </Tooltip>
+          )}
+
+          <Tooltip title="Posts">
+            <IconButton
+              component={Link}
+              to="/posts"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <CommentIcon />
+            </IconButton>
+          </Tooltip>
+          <span style={{ margin: '0 10px', opacity: '0.25' }}>|</span>
+          {isAuthenticated ? (
+            <div>
+              <Tooltip title="My profile">
+                <IconButton
+                  component={Link}
+                  to="/posts"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <AssignmentIndIcon />
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Log out">
+                <IconButton
+                  onClick={handleLogOut}
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <ExitToAppIcon />
+                </IconButton>
+              </Tooltip>
             </div>
           ) : (
             <>
-              <Link to="/login" className={classes.navbarButton}>
-                <Button color="secondary">Sign in</Button>
+              <Tooltip title="Sign up">
+                <IconButton
+                  component={Link}
+                  to="/signup"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <PersonAddIcon />
+                </IconButton>
+              </Tooltip>
+
+              <Tooltip title="Log in">
+                <IconButton
+                  component={Link}
+                  to="/login"
+                  aria-label="show 17 new notifications"
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Tooltip>
+              {/*           <Link to="/login">
+                <Button
+                  size="small"
+                  color="secondary"
+                  classes={{ label: classes.navbarButtonText }}
+                >
+                  Sign in
+                </Button>
               </Link>
               |
-              <Link to="/signup" className={classes.navbarButton}>
-                <Button color="secondary">Sign up</Button>
-              </Link>
+              <Link to="/signup">
+                <Button
+                  size="small"
+                  color="secondary"
+                  classes={{ label: classes.navbarButtonText }}
+                >
+                  Sign up
+                </Button>
+              </Link> */}
             </>
           )}
-          <IconButton aria-label="show 17 new notifications" color="inherit">
-            <ExitToAppIcon />
-          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

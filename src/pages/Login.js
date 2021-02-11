@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
@@ -14,7 +14,7 @@ import {
 import AsyncButton from 'src/components/Buttons/AsyncButton';
 import Alert from 'src/components/Messages/Alert';
 
-import { login } from 'src/actions/auth';
+import { login, setLoginErrorMessage } from 'src/actions/auth';
 
 const useStyles = makeStyles((theme) => ({
   formInput: {
@@ -26,13 +26,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
+const Login = ({
+  isAuthenticated,
+  loginErrorMessage,
+  loginAction,
+  setLoginErrorMessageAction,
+}) => {
   const [state, setState] = useState({
     username: '',
     password: '',
     submitLoading: false,
   });
   const classes = useStyles();
+
+  useEffect(() => {
+    setLoginErrorMessageAction();
+    // eslint-disable-next-line
+  }, []);
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -115,6 +125,10 @@ const Login = ({ isAuthenticated, loginErrorMessage, loginAction }) => {
 
 const constDispatchToProps = (dispatch) => ({
   loginAction: bindActionCreators(login, dispatch),
+  setLoginErrorMessageAction: bindActionCreators(
+    setLoginErrorMessage,
+    dispatch
+  ),
 });
 
 const mapStateToProps = (state) => ({

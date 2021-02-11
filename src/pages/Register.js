@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { bindActionCreators } from 'redux';
@@ -39,6 +39,11 @@ const Register = ({
     submitLoading: false,
   });
   const classes = useStyles();
+
+  useEffect(() => {
+    setRegisterErrorMessageAction();
+    // eslint-disable-next-line
+  }, []);
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
