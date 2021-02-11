@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import TextTruncate from 'react-text-truncate';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import {
@@ -22,6 +24,9 @@ import CommentIcon from '@material-ui/icons/Comment';
 import { v4 as uuidv4 } from 'uuid';
 
 const useStyles = makeStyles((theme) => ({
+  // root: {
+  //   height: '100%',
+  // },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -41,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -63,8 +68,8 @@ export default function RecipeReviewCard() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo"
-          subheader="Sep 14, 2016"
+          title={title}
+          subheader={moment(createdAt).format('MMM DD, YYYY')}
           style={{
             textAlign: 'left',
           }}
@@ -76,11 +81,16 @@ export default function RecipeReviewCard() {
           )}`}
           title="Paella dish"
         />
-        <CardContent>
+        <CardContent
+          style={{
+            height: '100px',
+            width: '432px',
+            maxWidth: 'fit-content',
+            overflowWrap: 'anywhere',
+          }}
+        >
           <Typography variant="body2" color="textSecondary" component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            {content.length > 100 ? `${content.substring(0, 97)}...` : content}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -106,4 +116,6 @@ export default function RecipeReviewCard() {
       </Card>
     </div>
   );
-}
+};
+
+export default PostItem;

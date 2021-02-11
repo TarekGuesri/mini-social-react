@@ -15,6 +15,7 @@ const Posts = ({ isAuthenticated }) => {
         <Grid justify="center" container>
           <Grid
             md={8}
+            sm={12}
             style={{
               marginRight: '32px',
             }}
