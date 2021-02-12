@@ -192,7 +192,12 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
     <div className={classes.grow}>
       <AppBar position="static" color="primary" style={{ boxShadow: 'none' }}>
         <Toolbar>
-          <IconButton aria-label="show 17 new notifications" color="inherit">
+          <IconButton
+            aria-label="show 17 new notifications"
+            color="inherit"
+            component={Link}
+            to="/"
+          >
             <AllInclusiveIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -237,7 +242,7 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
           <span style={{ margin: '0 10px', opacity: '0.25' }}>|</span>
           {isAuthenticated ? (
             <div>
-              <Tooltip title="My profile">
+              {/*          <Tooltip title="My profile">
                 <IconButton
                   component={Link}
                   to="/posts"
@@ -246,7 +251,7 @@ const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
                 >
                   <AssignmentIndIcon />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
 
               <Tooltip title="Log out">
                 <IconButton

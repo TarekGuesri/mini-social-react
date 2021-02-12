@@ -38,8 +38,6 @@ const LatestPosts = ({
     // eslint-disable-next-line
   }, []);
 
-  console.log(latestPosts);
-
   return (
     <>
       <Typography variant="h6" align="left" style={{ paddingLeft: '16px' }}>

@@ -13,6 +13,7 @@ body {
   padding: 0;
   background-color: rgb(240, 240, 240);
   overflow: auto;
+  min-height: 100vh;
 }
 
 .active > button > span {

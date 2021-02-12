@@ -40,10 +40,13 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: '#37a000',
+    textTransform: 'uppercase',
   },
 }));
 
-const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
+const PostItem = ({
+  post: { id, title, content, imgUrl, createdAt, user },
+}) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -57,12 +60,15 @@ const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
               color="primary"
               className={classes.avatar}
             >
-              J
+              {user.username[0]}
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
+            /*        <IconButton aria-label="settings">
               <MoreVertIcon />
+            </IconButton> */
+            <IconButton aria-label="share">
+              <ShareIcon />
             </IconButton>
           }
           title={title}
@@ -73,9 +79,12 @@ const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
         />
         <CardMedia
           className={classes.media}
-          image={`https://source.unsplash.com/collection/${Math.floor(
-            Math.random() * 10 + 1
-          )}`}
+          image={
+            imgUrl ||
+            `https://source.unsplash.com/collection/${Math.floor(
+              Math.random() * 10 + 1
+            )}`
+          }
           title="Paella dish"
         />
         <CardContent
@@ -91,11 +100,12 @@ const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
+          <IconButton
+            aria-label="add to favorites"
+            component={Link}
+            to={`post/${id}`}
+          >
+            <CommentIcon />
           </IconButton>
 
           <IconButton
@@ -104,10 +114,8 @@ const PostItem = ({ post: { id, title, content, imgUrl, createdAt } }) => {
             })}
             aria-expanded={expanded}
             aria-label="show more"
-            component={Link}
-            to="/post/1"
           >
-            <CommentIcon />
+            <FavoriteIcon />
           </IconButton>
         </CardActions>
       </Card>

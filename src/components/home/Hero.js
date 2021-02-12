@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Button, Box } from '@material-ui/core';
@@ -66,13 +67,15 @@ export default function Types() {
           below are ten hardcore nature hacks starting with good ol’ fire.
         </Typography>
 
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ marginBottom: '3rem', padding: '16px 48px' }}
-        >
-          Browse stories ➝
-        </Button>
+        <Link to="/posts">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginBottom: '3rem', padding: '16px 48px' }}
+          >
+            Browse stories ➝
+          </Button>
+        </Link>
       </div>
     </Container>
   );

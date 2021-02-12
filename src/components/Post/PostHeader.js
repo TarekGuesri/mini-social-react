@@ -20,7 +20,9 @@ const PostHeader = ({ classes, title, date, imgUrl }) => {
         className={classes.media}
         image={
           imgUrl ||
-          'https://i.pinimg.com/originals/5c/5d/04/5c5d04c629c243571643a1ba5c517333.jpg'
+          `https://source.unsplash.com/collection/${Math.floor(
+            Math.random() * 10 + 1
+          )}`
         }
         title={title}
       />
