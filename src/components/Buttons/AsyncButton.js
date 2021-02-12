@@ -16,6 +16,7 @@ function AsyncButton({
   disabled,
   loading,
   onClick,
+  style,
   ...rest
 }) {
   const classes = useStyles();
@@ -24,6 +25,7 @@ function AsyncButton({
     <Button
       variant={variant}
       color={color}
+      style={style}
       align={align}
       onClick={onClick}
       disabled={disabled}

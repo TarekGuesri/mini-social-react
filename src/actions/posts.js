@@ -80,7 +80,7 @@ export const addComment = (postId, content) => async (dispatch) => {
       type: ADD_COMMENT,
     });
 
-    dispatch(getPosts(postId));
+    dispatch(getCommentsByPostId(postId));
   } catch (err) {
     console.log(err);
   }

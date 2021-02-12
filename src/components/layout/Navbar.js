@@ -96,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = ({ isAuthenticated, loading, logoutAction }) => {
   const classes = useStyles();
-  console.log(classes.navbarButtonText);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
