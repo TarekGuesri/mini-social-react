@@ -5,12 +5,17 @@ import {
   ADD_POST,
   POST_ERROR,
   SET_POSTS_LOADING,
+  ADD_COMMENT,
+  GET_COMMENTS,
+  SET_COMMENTS_LOADING,
 } from '../actions/types';
 
 const initialState = {
   posts: [],
   post: null,
   loading: true,
+  comments: [],
+  commentsLoading: true,
   errorMessage: '',
 };
 
@@ -41,6 +46,17 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        comments: payload,
+        commentsLoading: false,
+      };
+    case SET_COMMENTS_LOADING:
+      return {
+        ...state,
+        commentsLoading: true,
       };
     default:
       return state;

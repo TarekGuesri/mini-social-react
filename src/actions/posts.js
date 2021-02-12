@@ -5,6 +5,9 @@ import {
   ADD_POST,
   POST_ERROR,
   SET_POSTS_LOADING,
+  ADD_COMMENT,
+  GET_COMMENTS,
+  SET_COMMENTS_LOADING,
 } from './types';
 
 // Get posts
@@ -32,7 +35,7 @@ export const getPosts = () => async (dispatch) => {
 export const createPost = (formData) => async (dispatch) => {
   try {
     await axios.post('posts', formData);
-    const res = await axios.get('posts');
+    await axios.get('posts');
 
     dispatch({
       type: ADD_POST,
@@ -65,5 +68,42 @@ export const getPost = (id) => async (dispatch) => {
       type: POST_ERROR,
       payload: { msg: err.response.data.msg },
     });
+  }
+};
+
+// Add comment
+export const addComment = (postId, content) => async (dispatch) => {
+  try {
+    await axios.post(`comments/post/${postId}`, { content });
+
+    dispatch({
+      type: ADD_COMMENT,
+    });
+
+    dispatch(getPosts(postId));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// Get comments by post Id
+export const getCommentsByPostId = (id) => async (dispatch) => {
+  dispatch({
+    type: SET_COMMENTS_LOADING,
+  });
+
+  try {
+    const res = await axios.get(`comments/post/${id}`);
+
+    dispatch({
+      type: GET_COMMENTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+    // dispatch({
+    //   type: POST_ERROR,
+    //   payload: { msg: err.response.data.msg },
+    // });
   }
 };

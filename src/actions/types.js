@@ -17,3 +17,6 @@ export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
 export const POST_ERROR = 'POST_ERROR';
 export const SET_POSTS_LOADING = 'SET_POSTS_LOADING';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const SET_COMMENTS_LOADING = 'SET_COMMENTS_LOADING';

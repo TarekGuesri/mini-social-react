@@ -40,7 +40,7 @@ export default function MinHeightTextarea() {
         style={{ minWidth: '96%', maxWidth: '96%' }}
         aria-label="Share your opinion..."
         rowsMin={3}
-        placeholder="Share your opinion..."
+        placeholder="Share your opinion about this post..."
         value={content}
         name="content"
         onChange={handleChange}
