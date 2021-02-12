@@ -31,7 +31,7 @@ const PostsList = ({ posts, loading, getPostsAction }) => {
         <Typography> There are no posts yet </Typography>
       ) : (
         posts.map((post) => (
-          <Grid md={6}>
+          <Grid key={post.id} md={6}>
             <PostItem key={post.id} post={post} />{' '}
           </Grid>
         ))

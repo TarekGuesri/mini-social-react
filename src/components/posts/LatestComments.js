@@ -28,7 +28,6 @@ const LatestComments = ({
 }) => {
   const classes = useStyles();
 
-  console.log(latestComments);
   useEffect(() => {
     getLatestCommentsAction();
     // eslint-disable-next-line
