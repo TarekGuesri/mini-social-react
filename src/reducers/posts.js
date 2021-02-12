@@ -8,6 +8,10 @@ import {
   ADD_COMMENT,
   GET_COMMENTS,
   SET_COMMENTS_LOADING,
+  GET_LATEST_POSTS,
+  SET_LATEST_POSTS_LOADING,
+  GET_LATEST_COMMENTS,
+  SET_LATEST_COMMENTS_LOADING,
 } from '../actions/types';
 
 const initialState = {
@@ -16,6 +20,10 @@ const initialState = {
   loading: true,
   comments: [],
   commentsLoading: true,
+  latestPosts: [],
+  latestPostsLoading: true,
+  latestComments: [],
+  latestCommentsLoading: true,
   errorMessage: '',
 };
 
@@ -57,6 +65,28 @@ export default function (state = initialState, action) {
       return {
         ...state,
         commentsLoading: true,
+      };
+    case GET_LATEST_POSTS:
+      return {
+        ...state,
+        latestPosts: payload,
+        latestPostsLoading: false,
+      };
+    case SET_LATEST_POSTS_LOADING:
+      return {
+        ...state,
+        latestPostsLoading: true,
+      };
+    case GET_LATEST_COMMENTS:
+      return {
+        ...state,
+        latestComments: payload,
+        latestCommentsLoading: false,
+      };
+    case SET_LATEST_COMMENTS_LOADING:
+      return {
+        ...state,
+        latestCommentsLoading: true,
       };
     default:
       return state;

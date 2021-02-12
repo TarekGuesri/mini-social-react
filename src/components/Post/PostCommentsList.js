@@ -19,8 +19,6 @@ const PostCommentsList = ({ comments, commentsLoading, classes }) => {
   return (
     <List>
       {comments.map((comment) => {
-        console.log(comment);
-
         return (
           <React.Fragment key={comment.id}>
             <ListItem key={comment.id} alignItems="flex-start">

@@ -8,6 +8,10 @@ import {
   ADD_COMMENT,
   GET_COMMENTS,
   SET_COMMENTS_LOADING,
+  GET_LATEST_COMMENTS,
+  SET_LATEST_COMMENTS_LOADING,
+  GET_LATEST_POSTS,
+  SET_LATEST_POSTS_LOADING,
 } from './types';
 
 // Get posts
@@ -105,5 +109,41 @@ export const getCommentsByPostId = (id) => async (dispatch) => {
     //   type: POST_ERROR,
     //   payload: { msg: err.response.data.msg },
     // });
+  }
+};
+
+// Get latest posts
+export const getLatestPosts = () => async (dispatch) => {
+  dispatch({
+    type: SET_LATEST_POSTS_LOADING,
+  });
+
+  try {
+    const res = await axios.get('posts/latest');
+
+    dispatch({
+      type: GET_LATEST_POSTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// Get latest comments
+export const getLatestComments = () => async (dispatch) => {
+  dispatch({
+    type: SET_LATEST_COMMENTS_LOADING,
+  });
+
+  try {
+    const res = await axios.get('comments/latest');
+
+    dispatch({
+      type: GET_LATEST_COMMENTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };
