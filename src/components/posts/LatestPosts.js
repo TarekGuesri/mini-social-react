@@ -81,7 +81,7 @@ const LatestPosts = ({
                         {post.user.username}
                       </Typography>
                       {post.content.length > 20
-                        ? `${post.content.substring(0, 17)}...`
+                        ? ` - ${post.content.substring(0, 17)}...`
                         : post.content}
                     </React.Fragment>
                   }
