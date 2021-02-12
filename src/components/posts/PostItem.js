@@ -89,7 +89,7 @@ const PostItem = ({
         />
         <CardContent
           style={{
-            height: '100px',
+            height: '58px',
             width: '432px',
             maxWidth: 'fit-content',
             overflowWrap: 'anywhere',
