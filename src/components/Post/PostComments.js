@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostComments = ({ comments }) => {
+const PostComments = ({ comments, commentsLoading }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -37,7 +37,11 @@ const PostComments = ({ comments }) => {
       </Grid>
 
       <PostCommentsAdd />
-      <PostCommentsList classes={classes} comments={comments} />
+      <PostCommentsList
+        classes={classes}
+        comments={comments}
+        commentsLoading={commentsLoading}
+      />
     </div>
   );
 };

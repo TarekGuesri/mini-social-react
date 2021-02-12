@@ -9,35 +9,40 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const PostCommentsList = ({ comments, classes }) => {
+import Spinner from 'src/components/Layout/Spinner';
+
+const PostCommentsList = ({ comments, commentsLoading, classes }) => {
+  if (commentsLoading) {
+    return <Spinner />;
+  }
+
   return (
     <List>
       {comments.map((comment) => {
+        console.log(comment);
+
         return (
           <React.Fragment key={comment.id}>
             <ListItem key={comment.id} alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar alt="avatar" />
+                <Avatar
+                  color="primary"
+                  alt="avatar"
+                  style={{
+                    backgroundColor: '#37a000',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {comment.user.username[0]}
+                </Avatar>
               </ListItemAvatar>
               <ListItemText
                 primary={
                   <Typography className={classes.fonts}>
-                    {comment.name}
+                    {comment.user.username}
                   </Typography>
                 }
-                secondary={
-                  <>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    >
-                      {comment.email}
-                    </Typography>
-                    {` - ${comment.body}`}
-                  </>
-                }
+                secondary={<>{comment.content}</>}
               />
             </ListItem>
             <Divider />
